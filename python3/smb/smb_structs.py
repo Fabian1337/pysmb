@@ -1025,7 +1025,8 @@ class ComOpenAndxRequest(Payload):
                         0,  # Timeout (in milli-secs)
                         0)  # Reserved
 
-        message.data = b'\0' + self.filename.encode('UTF-16LE') + b'\0\0'
+        utf8_decoded_filename = self.filename.encode('utf-8', 'surrogateescape').decode('utf-8')
+        message.data = b'\0' + utf8_decoded_filename.encode('UTF-16LE') + b'\0\0'
 
 
 class ComOpenAndxResponse(Payload):

@@ -2343,7 +2343,8 @@ c8 4f 32 4b 70 16 d3 01 12 78 5a 47 bf 6e e1 88
                 struct.pack('<HI',
                             0x0107, # SMB_QUERY_FILE_ALL_INFO ([MS-CIFS] 2.2.2.3.3)
                             0x0000) # Reserved
-            params_bytes += (path + '\0').encode('UTF-16LE')
+            utf8_encoded_path = path.encode('utf-8', 'surrogateescape').decode('utf-8')
+            params_bytes += (utf8_encoded_path + '\0').encode('UTF-16LE')
 
             m = SMBMessage(self, ComTransaction2Request(max_params_count = 2,
                                                   max_data_count = 65535,

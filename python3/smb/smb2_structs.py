@@ -462,7 +462,7 @@ class SMB2CreateRequest(Structure):
                  impersonation = SEC_ANONYMOUS,
                  oplock = SMB2_OPLOCK_LEVEL_NONE,
                  create_context_data = b''):
-        self.filename = filename
+        self.filename = filename.encode('utf-8', 'surrogateescape').decode('utf-8')
         self.file_attributes = file_attributes
         self.access_mask = access_mask
         self.share_access = share_access
