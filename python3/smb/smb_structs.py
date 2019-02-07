@@ -2,6 +2,7 @@
 import os, sys, struct, types, logging, binascii, time
 from io import StringIO
 from .smb_constants import *
+from .smb2_constants import SMB2_FLAGS_ASYNC_COMMAND
 
 
 # Set to True if you want to enable support for extended security. Required for Windows Vista and later
